@@ -113,6 +113,23 @@
     el.textContent = numeroParaExibir();
   });
 
+  // Botão "Ligar": mesmo número, em formato de telefone.
+  document.querySelectorAll('[data-tel]').forEach(function (link) {
+    link.setAttribute('href', 'tel:+' + String(WHATSAPP_NUMBER).replace(/\D/g, ''));
+  });
+
+  // "Enviar local no WhatsApp": mensagem pronta com endereço, Plus Code e rota.
+  var mensagemLocal = [
+    'Restaurante e Empório Cachoeira do Salto',
+    'Endereço: Estr. Bela Vista, Extrema – MG, 37640-000',
+    'Plus Code: 5P2J+M2 Extrema',
+    'Google Maps: https://www.google.com/maps/dir/?api=1&destination=-22.848289,-46.2699398'
+  ].join('\n');
+
+  document.querySelectorAll('[data-wa-local]').forEach(function (link) {
+    link.setAttribute('href', waUrl(mensagemLocal));
+  });
+
   /* ---------- Selo "Aberto agora" (fuso America/Sao_Paulo) ---------- */
   var SEMANA = { Mon: 'seg', Tue: 'ter', Wed: 'qua', Thu: 'qui', Fri: 'sex', Sat: 'sab', Sun: 'dom' };
   var NOMES_DIA = { seg: 'segunda', ter: 'terça', qua: 'quarta', qui: 'quinta', sex: 'sexta', sab: 'sábado', dom: 'domingo' };
