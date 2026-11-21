@@ -1,0 +1,9 @@
+Coloque aqui as fotos com estes nomes (JPG):
+hero.jpg            -> foto principal do topo (fachada, ambiente ou cachoeira)
+feijoada.jpg
+galinha-caipira.jpg
+salada-armazem.jpg
+espetinhos.jpg
+sobremesa.jpg
+cerveja.jpg
+Enquanto a foto nao existir, o site mostra um fundo de cor no lugar.
