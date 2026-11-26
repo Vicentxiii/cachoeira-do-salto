@@ -220,6 +220,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .maplabel .serif { font-size: 20px; font-weight: 500; }
 .maplabel div:last-child { margin-top: 4px; font-size: 14px; color: #cbbfae; }
 .footer { background: #0d0b08; padding: 36px 32px; text-align: center; font-size: 13.5px; color: #a99d8b; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.footer-brand { margin: 0; font-size: 13.5px; color: #8d8174; }
+.footer-credit { margin: 0; padding-top: 14px; border-top: 1px solid rgba(244,235,221,.1); font-size: 12.5px; letter-spacing: .02em; color: #7f7466; }
+.footer-credit a { color: #d9c9b4; text-decoration: none; border-bottom: 1px solid rgba(217,201,180,.35); padding-bottom: 1px; transition: color .2s, border-color .2s; }
+.footer-credit a:hover { color: #fff; border-color: #fff; }
+.footer-credit a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
 
 @media (max-width: 800px) {
   .nav-links { display: none; }
