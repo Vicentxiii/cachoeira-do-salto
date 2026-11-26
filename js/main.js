@@ -49,10 +49,11 @@
      Fim da área de edição
      ========================================================= */
 
-  // Brasas do hero
-  var box = document.getElementById('embers');
-  if (box) {
-    for (var i = 0; i < 26; i++) {
+  // Brasas do hero e do rodapé (mesmo efeito, em escalas diferentes)
+  function criarBrasas(id, quantidade) {
+    var box = document.getElementById(id);
+    if (!box) return;
+    for (var i = 0; i < quantidade; i++) {
       var s = document.createElement('span');
       s.className = 'ember';
       var size = 3 + (i % 4) * 2;
@@ -65,6 +66,8 @@
       box.appendChild(s);
     }
   }
+  criarBrasas('embers', 26);
+  criarBrasas('embers-footer', 16);
 
   // Calculadora de grupo (mantida)
   var pessoas = 4, dia = 'semana';
