@@ -94,8 +94,42 @@
   }
 
   if (elPessoas && elTotal && elDica && document.getElementById('mais') && document.getElementById('menos')) {
-    document.getElementById('mais').addEventListener('click', function () { pessoas = Math.min(40, pessoas + 1); render(); });
-    document.getElementById('menos').addEventListener('click', function () { pessoas = Math.max(1, pessoas - 1); render(); });
+    function mudarPessoas(delta) {
+      pessoas = Math.min(40, Math.max(1, pessoas + delta));
+      render();
+    }
+
+    // Um toque conta na hora; se a pessoa segurar, acelera sozinho.
+    function configurarStepper(botao, delta) {
+      if (!botao) return;
+      if (!window.PointerEvent) {
+        botao.addEventListener('click', function () { mudarPessoas(delta); });
+        return;
+      }
+      var espera = null, repeticao = null;
+      function parar() {
+        if (espera) { clearTimeout(espera); espera = null; }
+        if (repeticao) { clearInterval(repeticao); repeticao = null; }
+      }
+      botao.addEventListener('pointerdown', function (event) {
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+        event.preventDefault(); // evita o duplo toque dar zoom e a seleção de texto
+        mudarPessoas(delta);
+        espera = setTimeout(function () {
+          repeticao = setInterval(function () { mudarPessoas(delta); }, 110);
+        }, 350);
+      });
+      ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(function (nome) {
+        botao.addEventListener(nome, parar);
+      });
+      // Enter/Espaço no teclado também contam como um toque.
+      botao.addEventListener('click', function (event) {
+        if (event.detail === 0) mudarPessoas(delta);
+      });
+    }
+
+    configurarStepper(document.getElementById('mais'), 1);
+    configurarStepper(document.getElementById('menos'), -1);
     document.querySelectorAll('.seg').forEach(function (b) {
       b.addEventListener('click', function () { dia = b.getAttribute('data-dia'); render(); });
     });

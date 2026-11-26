@@ -11,6 +11,9 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--ink); color: var(--cream); overflow-x: hidden; }
 a { color: inherit; }
+/* Evita o zoom automático quando a pessoa toca duas vezes rápido no celular. */
+button, a, summary { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.step, .seg, .carousel-btn, .copy-btn { user-select: none; -webkit-user-select: none; }
 .serif { font-family: 'Fraunces', Georgia, serif; }
 .wrap { max-width: 1240px; margin: 0 auto; }
 .rel { position: relative; }
