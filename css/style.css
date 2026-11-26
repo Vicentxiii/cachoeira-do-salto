@@ -190,6 +190,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Avaliações */
 .reviews { display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start; }
 .rating { flex: 1 1 280px; max-width: 340px; }
+.rating-head { display: flex; align-items: center; gap: 10px; }
+.google-g { width: 26px; height: 26px; flex: none; }
 .rating-n { margin-top: 18px; font-size: 110px; line-height: .95; font-weight: 500; }
 .stars { margin-top: 8px; font-size: 22px; letter-spacing: .15em; color: var(--rust); }
 .rating-sub { margin: 12px 0 0; font-size: 15px; color: #5b5044; }
