@@ -21,7 +21,8 @@
   "@type": "Restaurant",
   "name": "Restaurante e Empório Cachoeira do Salto",
   "servesCuisine": "Mineira",
-  "priceRange": "R$ 40 por pessoa",
+  "priceRange": "R$ 40 a R$ 50 por pessoa",
+  "openingHours": ["Mo-Fr 11:00-15:00", "Sa-Su 11:00-17:00"],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Estr. Bela Vista",
@@ -77,7 +78,7 @@
     <h1 class="serif hero-h1">Fogão a lenha, mesa farta e a <em>Cachoeira do Salto</em> logo ali.</h1>
     <p class="hero-lead">Comida mineira caseira feita no fogão a lenha. Self-service, preço justo e um atendimento que transforma freguês em amigo.</p>
     <div class="hero-status">
-      <span class="open-badge" data-open-badge role="status" aria-live="polite">Confirme o horário pelo WhatsApp</span>
+      <span class="open-badge" data-open-badge role="status" aria-live="polite">Aberto todos os dias · almoço a partir das 11h</span>
     </div>
     <div class="hero-cta">
       <a class="btn btn-white" href="https://www.google.com/maps/dir/?api=1&amp;destination=-22.848289,-46.2699398">
@@ -88,8 +89,8 @@
     </div>
     <div class="hero-facts">
       <span><strong>★ 4,7</strong> · 51 avaliações no Google</span>
-      <span>Self-service R$ 40, à vontade</span>
-      <span>Segunda: fechado · Sexta: até 18h · [CONFIRMAR DEMAIS DIAS]</span>
+      <span>Self-service <span data-preco-resumo>R$ 40 na semana · R$ 50 no fim de semana</span>, à vontade</span>
+      <span>Aberto todos os dias · Seg–sex: 11h–15h · Sáb–dom: 11h–17h</span>
     </div>
   </div>
 </header>
@@ -122,8 +123,8 @@
         <div class="calc-result">
           <div class="calc-label">Estimativa de consumo</div>
           <div class="serif total" id="total">R$ 160</div>
-          <p class="calc-tip" id="dica">Dia de semana: as avaliações não apontam fila. Confirme o horário antes de sair.</p>
-          <p class="calc-note">Self-service a R$ 40 por pessoa, à vontade. Pode repetir quantos pedaços quiser.</p>
+          <p class="calc-tip" id="dica">Dia de semana: as avaliações não apontam fila. Almoço das 11h às 15h.</p>
+          <p class="calc-note" id="preco-nota">Self-service a R$ 40 por pessoa, à vontade. Pode repetir quantos pedaços quiser.</p>
         </div>
       </div>
 
@@ -138,7 +139,7 @@
         </div>
         <div class="tip card-lift">
           <div class="serif tip-title">Horários</div>
-          <p>Segunda-feira: fechado. Sexta-feira: aberto até as 18h. [CONFIRMAR DEMAIS DIAS]</p>
+          <p>Aberto todos os dias. De segunda a sexta, o almoço é servido das 11h às 15h. Aos sábados e domingos, das 11h às 17h.</p>
         </div>
       </div>
     </div>
@@ -168,7 +169,7 @@
         </li>
         <li class="practical-item practical-wide">
           <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
-          <div><strong>Cobrança do self-service</strong><span>R$ 40, à vontade. Pode repetir quantos pedaços quiser.</span></div>
+          <div><strong>Cobrança do self-service</strong><span data-preco-detalhe>R$ 40 por pessoa em dia de semana e R$ 50 aos fins de semana, à vontade. Pode repetir quantos pedaços quiser.</span></div>
         </li>
       </ul>
     </div>
@@ -307,7 +308,7 @@
       <div class="kicker">Como chegar</div>
       <h2 class="serif h2">Venha almoçar na Estrada da Bela Vista.</h2>
       <div class="hero-status">
-        <span class="open-badge" data-open-badge role="status" aria-live="polite">Confirme o horário pelo WhatsApp</span>
+        <span class="open-badge" data-open-badge role="status" aria-live="polite">Aberto todos os dias · almoço a partir das 11h</span>
       </div>
 
       <div class="copy-block card-lift">
@@ -324,7 +325,7 @@
         </div>
         <div>
           <dt>Horário</dt>
-          <dd>Segunda: fechado · Sexta: até 18h · [CONFIRMAR DEMAIS DIAS]</dd>
+          <dd>Todos os dias · Seg–sex: 11h–15h · Sáb–dom: 11h–17h</dd>
         </div>
       </dl>
 
@@ -373,8 +374,12 @@
         <p>Recomendamos avisar antes. Use o formulário “Vai em grupo ou excursão?” desta página: montamos a mensagem e você envia pelo WhatsApp.</p>
       </details>
       <details class="faq-item">
+        <summary>Quanto custa e até que hora servem o almoço?</summary>
+        <p>O self-service é à vontade: R$ 40 por pessoa de segunda a sexta e R$ 50 aos sábados e domingos. O almoço é servido das 11h às 15h em dias de semana e das 11h às 17h nos fins de semana.</p>
+      </details>
+      <details class="faq-item">
         <summary>O self-service inclui sobremesa e bebida?</summary>
-        <p>[CONFIRMAR] A sobremesa e a bebida estão incluídas no valor de R$ 40?</p>
+        <p>[CONFIRMAR] A sobremesa e a bebida estão incluídas no valor do self-service (R$ 40 na semana e R$ 50 no fim de semana)?</p>
       </details>
       <details class="faq-item">
         <summary>Pode trazer comida ou bebida?</summary>
@@ -390,7 +395,7 @@
       </details>
       <details class="faq-item">
         <summary>Qual horário evitar para não pegar fila?</summary>
-        <p>Aos fins de semana há fila por causa das excursões, então chegue cedo. [CONFIRMAR] Horários de maior movimento.</p>
+        <p>Aos fins de semana há fila por causa das excursões, então chegue cedo: o almoço começa às 11h e vai até 17h. De segunda a sexta, o almoço vai até 15h.</p>
       </details>
     </div>
   </div>

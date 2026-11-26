@@ -15,4 +15,6 @@ Abra esta pasta no VS Code e clique em **Go Live** (extensão Live Server). Tamb
 
 ## Edição rápida
 
-O número de WhatsApp, os horários de funcionamento e o prato do dia ficam no topo de `js/main.js`, com comentários explicando como atualizar.
+O número de WhatsApp, os horários de funcionamento (`HORARIOS`), os preços do self-service (`PRECOS`) e o prato do dia ficam no topo de `js/main.js`, com comentários explicando como atualizar.
+
+Horários confirmados: aberto todos os dias; almoço das 11h às 15h de segunda a sexta e das 11h às 17h aos sábados e domingos. Self-service à vontade: R$ 40 em dia de semana e R$ 50 no fim de semana.

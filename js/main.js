@@ -10,22 +10,17 @@
   // Todas as links de WhatsApp da página são montadas a partir desta única constante.
   var WHATSAPP_NUMBER = '5511979860261';
 
-  // [CONFIRMAR] Horários de funcionamento.
+  // Horários de funcionamento (confirmados): aberto todos os dias.
   // Formato: { abre: 'HH:MM', fecha: 'HH:MM' }. Use null para um dia sem horário confirmado.
   // Para um dia que nunca abre, use { fechado: true }.
-  // Exemplo: sex: { abre: '11:00', fecha: '18:00' }
-  // Dia sem horário (null) faz o selo mostrar "Confirme o horário pelo WhatsApp".
-  // Só sabemos, por enquanto, que à sexta o restaurante abre até as 18h;
-  // o horário de abertura e os demais dias precisam ser confirmados.
   var HORARIOS = {
-    // Segunda-feira nunca abre (confirmado pelo cliente).
-    seg: { fechado: true },
-    ter: null,
-    qua: null,
-    qui: null,
-    sex: { abre: null, fecha: '18:00' },
-    sab: null,
-    dom: null
+    seg: { abre: '11:00', fecha: '15:00' },
+    ter: { abre: '11:00', fecha: '15:00' },
+    qua: { abre: '11:00', fecha: '15:00' },
+    qui: { abre: '11:00', fecha: '15:00' },
+    sex: { abre: '11:00', fecha: '15:00' },
+    sab: { abre: '11:00', fecha: '17:00' },
+    dom: { abre: '11:00', fecha: '17:00' }
   };
 
   // PRATO DO DIA — como o Leo atualiza:
@@ -36,6 +31,13 @@
   // 4) Não precisa mexer no HTML nem rodar build: salve o arquivo e recarregue a página.
   // Enquanto o array estiver vazio, o bloco "Hoje no fogão" fica invisível.
   var PRATOS_DO_DIA = [];
+
+  // Preço do self-service (comida à vontade) por pessoa. A calculadora troca
+  // o valor quando a pessoa seleciona "Dia de semana" ou "Fim de semana".
+  var PRECOS = {
+    semana: 40,
+    fds: 50
+  };
 
   /* =========================================================
      Fim da área de edição
@@ -63,16 +65,21 @@
   var elPessoas = document.getElementById('pessoas');
   var elTotal = document.getElementById('total');
   var elDica = document.getElementById('dica');
+  var elPrecoNota = document.getElementById('preco-nota');
   var fmt = function (n) { return 'R$ ' + n.toLocaleString('pt-BR'); };
   var dicas = {
-    semana: 'Dia de semana: as avaliações não apontam fila. Confirme o horário antes de sair.',
-    fds: 'As avaliações citam fila nos fins de semana por causa de excursões. Chegue mais cedo ou fora do horário de pico.'
+    semana: 'Dia de semana: as avaliações não apontam fila. Almoço das 11h às 15h.',
+    fds: 'As avaliações citam fila nos fins de semana por causa de excursões. Chegue cedo: o almoço vai das 11h às 17h.'
   };
 
   function render() {
+    var preco = PRECOS[dia];
     elPessoas.textContent = pessoas;
-    elTotal.textContent = fmt(pessoas * 40);
+    elTotal.textContent = fmt(pessoas * preco);
     elDica.textContent = dicas[dia];
+    if (elPrecoNota) {
+      elPrecoNota.textContent = 'Self-service a ' + fmt(preco) + ' por pessoa, à vontade. Pode repetir quantos pedaços quiser.';
+    }
     document.querySelectorAll('.seg').forEach(function (b) {
       var on = b.getAttribute('data-dia') === dia;
       b.classList.toggle('is-on', on);
@@ -88,6 +95,14 @@
     });
     render();
   }
+
+  // As demais citações de preço na página usam a mesma constante PRECOS.
+  document.querySelectorAll('[data-preco-resumo]').forEach(function (el) {
+    el.textContent = fmt(PRECOS.semana) + ' na semana · ' + fmt(PRECOS.fds) + ' no fim de semana';
+  });
+  document.querySelectorAll('[data-preco-detalhe]').forEach(function (el) {
+    el.textContent = fmt(PRECOS.semana) + ' por pessoa em dia de semana e ' + fmt(PRECOS.fds) + ' aos fins de semana, à vontade. Pode repetir quantos pedaços quiser.';
+  });
 
   /* ---------- WhatsApp: uma única constante ---------- */
   function waUrl(texto) {
