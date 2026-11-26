@@ -78,7 +78,7 @@
     elTotal.textContent = fmt(pessoas * preco);
     elDica.textContent = dicas[dia];
     if (elPrecoNota) {
-      elPrecoNota.textContent = 'Self-service a ' + fmt(preco) + ' por pessoa, à vontade. Pode repetir quantos pedaços quiser.';
+      elPrecoNota.textContent = 'Self-service a ' + fmt(preco) + ' por pessoa, à vontade. Pode repetir quantos pratos quiser.';
     }
     document.querySelectorAll('.seg').forEach(function (b) {
       var on = b.getAttribute('data-dia') === dia;
@@ -101,7 +101,7 @@
     el.textContent = fmt(PRECOS.semana) + ' na semana · ' + fmt(PRECOS.fds) + ' no fim de semana';
   });
   document.querySelectorAll('[data-preco-detalhe]').forEach(function (el) {
-    el.textContent = fmt(PRECOS.semana) + ' por pessoa em dia de semana e ' + fmt(PRECOS.fds) + ' aos fins de semana, à vontade. Pode repetir quantos pedaços quiser.';
+    el.textContent = fmt(PRECOS.semana) + ' por pessoa em dia de semana e ' + fmt(PRECOS.fds) + ' aos fins de semana, à vontade. Pode repetir quantos pratos quiser.';
   });
 
   /* ---------- WhatsApp: uma única constante ---------- */
