@@ -5,8 +5,7 @@
      EDITE AQUI — dados que mudam com frequência
      ========================================================= */
 
-  // [CONFIRMAR] Número de WhatsApp com DDI e DDD, somente dígitos.
-  // Este é o número que já estava no site; confirme com o cliente antes de publicar.
+  // Número de WhatsApp com DDI e DDD, somente dígitos (confirmado).
   // Todas as links de WhatsApp da página são montadas a partir desta única constante.
   var WHATSAPP_NUMBER = '5511979860261';
 
