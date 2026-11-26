@@ -234,6 +234,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Mapa embutido */
 .mapcard { flex: 1 1 420px; min-height: 420px; border-radius: 32px; position: relative; overflow: hidden; background: var(--green); border: 1px solid rgba(244,235,221,.12); display: flex; flex-direction: column; }
 .mapcard iframe { flex: 1 1 auto; width: 100%; min-height: 360px; border: 0; display: block; }
+.map-open { position: absolute; top: 14px; right: 14px; z-index: 2; padding: 8px 14px; border-radius: 999px; background: rgba(20,17,13,.9); border: 1px solid rgba(244,235,221,.2); color: #f4ebdd; font-size: 12px; text-decoration: none; transition: background .2s; }
+.map-open:hover { background: #14110d; }
 .maplabel { background: rgba(20,17,13,.92); border-top: 1px solid rgba(244,235,221,.14); padding: 18px 22px; }
 .maplabel .serif { font-size: 20px; font-weight: 500; }
 .maplabel div:last-child { margin-top: 4px; font-size: 14px; color: #cbbfae; }
