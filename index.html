@@ -38,6 +38,16 @@
 </head>
 <body>
 
+<!-- Ícone do Google reutilizado nas avaliações -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
+  <symbol id="google-g" viewBox="0 0 48 48">
+    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+  </symbol>
+</svg>
+
 <!-- HERO -->
 <header id="inicio" class="hero">
   <div class="hero-photo" aria-hidden="true"></div>
@@ -284,12 +294,7 @@
   <div class="wrap reviews">
     <div class="rating">
       <div class="rating-head">
-        <svg class="google-g" viewBox="0 0 48 48" role="img" aria-label="Google" focusable="false">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
+        <svg class="google-g" role="img" aria-label="Google" focusable="false"><use href="#google-g"></use></svg>
         <span class="kicker kicker-dark">Avaliações no Google</span>
       </div>
       <div class="serif rating-n">4,7</div>
@@ -303,40 +308,55 @@
           <a class="quote-inner" data-review-index="0" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Karine D. no Google">
             <div class="qmark serif" aria-hidden="true">“</div>
             <blockquote class="serif">Comida mineira do jeito que eu queria, tudo muito quentinho e saboroso. Um pouco de fila no fim de semana por causa das excursões, mas nada que atrapalhasse.</blockquote>
-            <div class="quote-author">Karine D. · avaliação no Google</div>
-            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            <div class="quote-meta">
+              <svg class="quote-google" role="img" aria-label="Google" focusable="false"><use href="#google-g"></use></svg>
+              <div class="quote-author">Karine D. · avaliação no Google</div>
+              <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            </div>
           </a>
         </article>
         <article class="quote card-lift">
           <a class="quote-inner" data-review-index="1" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Emilay C. no Google">
             <div class="qmark serif" aria-hidden="true">“</div>
             <blockquote class="serif">Comida muito saborosa, com direito a sobremesa e preço acessível. Ótimo atendimento e ambiente agradável. Recomendo, nota 10!</blockquote>
-            <div class="quote-author">Emilay C. · Local Guide no Google</div>
-            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            <div class="quote-meta">
+              <svg class="quote-google" role="img" aria-label="Google" focusable="false"><use href="#google-g"></use></svg>
+              <div class="quote-author">Emilay C. · Local Guide no Google</div>
+              <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            </div>
           </a>
         </article>
         <article class="quote card-lift">
           <a class="quote-inner" data-review-index="2" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Vicentxiii C. no Google">
             <div class="qmark serif" aria-hidden="true">“</div>
             <blockquote class="serif">Virei amigo pessoal do Léo, levei também toda minha família lá. Atendimento exemplar e simplesmente um dos melhores espetinhos que já comi na minha vida.</blockquote>
-            <div class="quote-author">Vicentxiii C. · avaliação no Google</div>
-            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            <div class="quote-meta">
+              <svg class="quote-google" role="img" aria-label="Google" focusable="false"><use href="#google-g"></use></svg>
+              <div class="quote-author">Vicentxiii C. · avaliação no Google</div>
+              <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            </div>
           </a>
         </article>
         <article class="quote card-lift">
           <a class="quote-inner" data-review-index="3" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação no Google">
             <div class="qmark serif" aria-hidden="true">“</div>
             <blockquote class="serif">Restaurante self-service, fogão a lenha, próximo à Cachoeira do Salto. Cerveja gelada.</blockquote>
-            <div class="quote-author">Cliente · avaliação no Google</div>
-            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            <div class="quote-meta">
+              <svg class="quote-google" role="img" aria-label="Google" focusable="false"><use href="#google-g"></use></svg>
+              <div class="quote-author">Cliente · avaliação no Google</div>
+              <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            </div>
           </a>
         </article>
         <article class="quote card-lift">
           <a class="quote-inner" data-review-index="4" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação no Google">
             <div class="qmark serif" aria-hidden="true">“</div>
             <blockquote class="serif">Comida muito boa, ambiente agradável, atendimento excelente. Amamos tudo e voltaremos sempre!</blockquote>
-            <div class="quote-author">Cliente · avaliação no Google</div>
-            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            <div class="quote-meta">
+              <svg class="quote-google" role="img" aria-label="Google" focusable="false"><use href="#google-g"></use></svg>
+              <div class="quote-author">Cliente · avaliação no Google</div>
+              <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+            </div>
           </a>
         </article>
       </div>
