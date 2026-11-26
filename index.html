@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.36.0/mapbox-gl.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -115,7 +116,8 @@
 
     <div class="plan-grid">
       <div class="calc">
-        <div class="serif calc-title">Estimativa para o seu grupo</div>
+        <div class="serif calc-title">Estimativa para o seu grupo <span class="calc-star" aria-hidden="true">*</span></div>
+        <p class="calc-alert">Atenção: aos finais de semana o preço muda. Certifique-se de clicar no botão <strong>Fim de semana</strong> para ver o preço atualizado.</p>
 
         <div class="calc-label">Quantas pessoas?</div>
         <div class="stepper">
@@ -416,12 +418,7 @@
     </div>
 
     <div class="mapcard">
-      <iframe
-        title="Mapa do Restaurante e Empório Cachoeira do Salto em Extrema, MG"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-46.27994%2C-22.85829%2C-46.25994%2C-22.83829&amp;layer=mapnik&amp;marker=-22.848289%2C-46.2699398"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen></iframe>
+      <div id="mapa-3d" class="mapa-3d" role="region" aria-label="Mapa 3D do Restaurante e Empório Cachoeira do Salto em Extrema, MG"></div>
       <a class="map-open" href="https://www.google.com/maps/dir/?api=1&amp;destination=-22.848289,-46.2699398" target="_blank" rel="noopener noreferrer">Abrir no Google Maps ↗</a>
       <div class="maplabel">
         <div class="serif">Restaurante e Empório Cachoeira do Salto</div>
@@ -467,6 +464,7 @@
   </div>
 </footer>
 
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.36.0/mapbox-gl.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

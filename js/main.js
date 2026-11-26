@@ -398,4 +398,93 @@
       blocoDia.hidden = false;
     }
   }
+
+  /* ---------- Mapa 3D (Mapbox GL JS) ---------- */
+  var MAPBOX_TOKEN = 'pk.eyJ1IjoiYWdlbmNpYXYxM3ZpdmUiLCJhIjoiY213eTVsdnMyMDh2MDMwb2NvOWMyZWwwOCJ9.irbgB7wQ1wuJftihcpiUvw';
+  var COORDS_EXATAS = [-46.2699398, -22.848289]; // [longitude, latitude]
+  var ENDERECO_GEOCODE = 'Estrada Bela Vista, Extrema, MG, Brazil';
+
+  // Centraliza via geocoding do Mapbox; se falhar, usa as coordenadas exatas.
+  function buscarCentro(callback) {
+    if (!window.fetch) { callback(COORDS_EXATAS); return; }
+    var url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' +
+      encodeURIComponent(ENDERECO_GEOCODE) + '.json?access_token=' +
+      encodeURIComponent(MAPBOX_TOKEN) + '&limit=1&country=br';
+    fetch(url)
+      .then(function (resp) { return resp.ok ? resp.json() : null; })
+      .then(function (dados) {
+        var feature = dados && dados.features && dados.features[0];
+        callback(feature && feature.center ? feature.center : COORDS_EXATAS);
+      })
+      .catch(function () { callback(COORDS_EXATAS); });
+  }
+
+  function iniciarMapa3D(centroInicial) {
+    if (!document.getElementById('mapa-3d') || !window.mapboxgl) return;
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    var mapa = new mapboxgl.Map({
+      container: 'mapa-3d',
+      style: 'mapbox://styles/mapbox/standard',
+      center: centroInicial || COORDS_EXATAS,
+      zoom: 13.5,
+      pitch: 30,
+      bearing: 0,
+      antialias: true,
+      attributionControl: false
+    });
+
+    mapa.addControl(new mapboxgl.NavigationControl({ showZoom: true, showCompass: true, visualizePitch: true }), 'top-right');
+    mapa.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+    mapa.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-right');
+
+    mapa.on('load', function () {
+      try {
+        mapa.addSource('mapbox-dem', {
+          type: 'raster-dem',
+          url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+          tileSize: 512,
+          maxzoom: 14
+        });
+        mapa.setTerrain({ source: 'mapbox-dem', exaggeration: 1.4 });
+      } catch (e) {}
+      try {
+        mapa.setFog({
+          color: 'rgb(236, 227, 215)',
+          'high-color': 'rgb(24, 38, 62)',
+          'horizon-blend': 0.08,
+          'space-color': 'rgb(11, 16, 28)',
+          'star-intensity': 0.2
+        });
+        mapa.setConfigProperty('basemap', 'show3dObjects', true);
+      } catch (e) {}
+
+      var popup = new mapboxgl.Popup({ offset: 30, maxWidth: '260px', className: 'map-popup' })
+        .setHTML(
+          '<div class="popup-titulo">Restaurante e Empório Cachoeira do Salto</div>' +
+          '<p class="popup-endereco">Estrada Bela Vista — Extrema, MG (37640-000)</p>' +
+          '<a class="popup-rota" href="https://www.google.com/maps/dir/?api=1&destination=-22.848289,-46.2699398" target="_blank" rel="noopener noreferrer">Abrir rotas no Google Maps ↗</a>'
+        );
+
+      var pino = document.createElement('div');
+      pino.className = 'map-pin';
+      new mapboxgl.Marker({ element: pino, anchor: 'bottom' })
+        .setLngLat(COORDS_EXATAS)
+        .setPopup(popup)
+        .addTo(mapa);
+
+      window.setTimeout(function () {
+        mapa.flyTo({
+          center: COORDS_EXATAS,
+          zoom: 15.5,
+          pitch: 60,
+          bearing: -25,
+          duration: 4500,
+          essential: true
+        });
+      }, 400);
+    });
+  }
+
+  buscarCentro(iniciarMapa3D);
 })();

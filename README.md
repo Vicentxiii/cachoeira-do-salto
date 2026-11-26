@@ -10,7 +10,7 @@ Abra esta pasta no VS Code e clique em **Go Live** (extensão Live Server). Tamb
 
 - `index.html` — páginas, seções e JSON-LD
 - `css/style.css` — cores, layout e animações
-- `js/main.js` — dados editáveis, calculadora, reserva pelo WhatsApp e selo de horário
+- `js/main.js` — dados editáveis, calculadora, reserva pelo WhatsApp, selo de horário e mapa 3D com Mapbox GL JS
 - `images/` — fotos originais e `images/otimizadas/` (cópias em WebP)
 
 ## Edição rápida
@@ -18,3 +18,5 @@ Abra esta pasta no VS Code e clique em **Go Live** (extensão Live Server). Tamb
 O número de WhatsApp, os horários de funcionamento (`HORARIOS`), os preços do self-service (`PRECOS`) e o prato do dia ficam no topo de `js/main.js`, com comentários explicando como atualizar.
 
 Horários confirmados: aberto todos os dias; almoço das 11h às 15h de segunda a sexta e das 11h às 17h aos sábados e domingos. Self-service à vontade: R$ 40 em dia de semana e R$ 50 no fim de semana.
+
+O mapa 3D usa Mapbox GL JS via CDN (projeto sem build) e precisa de internet. O token público e as coordenadas ficam no topo da seção "Mapa 3D" em `js/main.js`. Se o geocoding não encontrar a Estrada Bela Vista, o mapa usa as coordenadas exatas `-22.848289, -46.2699398`.
