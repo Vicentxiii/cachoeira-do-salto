@@ -39,6 +39,12 @@
     fds: 50
   };
 
+  // Links diretos das avaliações no Google, na mesma ordem dos cards.
+  // Copie o link de cada avaliação no Google Maps e cole aqui.
+  // Com '' (vazio), o card abre a página de avaliações do restaurante.
+  var REVIEW_LINKS = ['', '', '', '', ''];
+  var URL_AVALIACOES = 'https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ';
+
   /* =========================================================
      Fim da área de edição
      ========================================================= */
@@ -103,6 +109,29 @@
   document.querySelectorAll('[data-preco-detalhe]').forEach(function (el) {
     el.textContent = fmt(PRECOS.semana) + ' por pessoa em dia de semana e ' + fmt(PRECOS.fds) + ' aos fins de semana, à vontade. Pode repetir quantos pratos quiser.';
   });
+
+  /* ---------- Avaliações: links diretos e carrossel ---------- */
+  document.querySelectorAll('[data-review-index]').forEach(function (link) {
+    var i = parseInt(link.getAttribute('data-review-index'), 10);
+    var url = REVIEW_LINKS[i];
+    if (url) link.setAttribute('href', url);
+  });
+
+  var carousel = document.getElementById('reviews-carousel');
+  if (carousel) {
+    document.querySelectorAll('[data-review-scroll]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = carousel.querySelector('.quote');
+        var passo = card ? card.getBoundingClientRect().width + 20 : 340;
+        var dir = parseInt(btn.getAttribute('data-review-scroll'), 10);
+        if (carousel.scrollBy) {
+          carousel.scrollBy({ left: dir * passo, behavior: 'smooth' });
+        } else {
+          carousel.scrollLeft += dir * passo;
+        }
+      });
+    });
+  }
 
   /* ---------- WhatsApp: uma única constante ---------- */
   function waUrl(texto) {

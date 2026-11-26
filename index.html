@@ -266,7 +266,15 @@
 
     <div class="emporio">
       <div class="serif emporio-title">O Empório</div>
-      <p>[CONFIRMAR] Listar os produtos do empório.</p>
+      <p>Uma parada gostosa antes ou depois do almoço. No empório você encontra:</p>
+      <ul class="emporio-list">
+        <li>Mel</li>
+        <li>Doces</li>
+        <li>Sorvetes</li>
+        <li>Salgadinhos</li>
+        <li>Sorvete de máquina</li>
+        <li>Máquina de pegar brinquedos</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -279,24 +287,55 @@
       <div class="serif rating-n">4,7</div>
       <div class="stars" aria-label="4,7 de 5 estrelas">★★★★★</div>
       <p class="rating-sub">51 avaliações · Restaurante familiar</p>
-      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante+e+Emp%C3%B3rio+Cachoeira+do+Salto+Extrema">Ver todas no Google</a>
+      <a class="btn btn-line" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ">Ver todas no Google</a>
     </div>
-    <div class="quotes">
-      <figure class="quote card-lift">
-        <div class="qmark serif" aria-hidden="true">“</div>
-        <blockquote class="serif">Comida mineira do jeito que eu queria, tudo muito quentinho e saboroso.</blockquote>
-        <figcaption>Karine D. · avaliação no Google</figcaption>
-      </figure>
-      <figure class="quote card-lift">
-        <div class="qmark serif" aria-hidden="true">“</div>
-        <blockquote class="serif">Ótimo atendimento e ambiente agradável. Recomendo, nota 10!</blockquote>
-        <figcaption>Emilay C. · Local Guide no Google</figcaption>
-      </figure>
-      <figure class="quote card-lift">
-        <div class="qmark serif" aria-hidden="true">“</div>
-        <blockquote class="serif">Um dos melhores espetinhos que já comi na minha vida.</blockquote>
-        <figcaption>Vicentxiii C. · avaliação no Google</figcaption>
-      </figure>
+    <div class="quotes-wrap">
+      <div class="quotes" id="reviews-carousel" role="region" aria-label="Avaliações no Google" tabindex="0">
+        <article class="quote card-lift">
+          <a class="quote-inner" data-review-index="0" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Karine D. no Google">
+            <div class="qmark serif" aria-hidden="true">“</div>
+            <blockquote class="serif">Comida mineira do jeito que eu queria, tudo muito quentinho e saboroso. Um pouco de fila no fim de semana por causa das excursões, mas nada que atrapalhasse.</blockquote>
+            <div class="quote-author">Karine D. · avaliação no Google</div>
+            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+          </a>
+        </article>
+        <article class="quote card-lift">
+          <a class="quote-inner" data-review-index="1" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Emilay C. no Google">
+            <div class="qmark serif" aria-hidden="true">“</div>
+            <blockquote class="serif">Comida muito saborosa, com direito a sobremesa e preço acessível. Ótimo atendimento e ambiente agradável. Recomendo, nota 10!</blockquote>
+            <div class="quote-author">Emilay C. · Local Guide no Google</div>
+            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+          </a>
+        </article>
+        <article class="quote card-lift">
+          <a class="quote-inner" data-review-index="2" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação de Vicentxiii C. no Google">
+            <div class="qmark serif" aria-hidden="true">“</div>
+            <blockquote class="serif">Virei amigo pessoal do Léo, levei também toda minha família lá. Atendimento exemplar e simplesmente um dos melhores espetinhos que já comi na minha vida.</blockquote>
+            <div class="quote-author">Vicentxiii C. · avaliação no Google</div>
+            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+          </a>
+        </article>
+        <article class="quote card-lift">
+          <a class="quote-inner" data-review-index="3" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação no Google">
+            <div class="qmark serif" aria-hidden="true">“</div>
+            <blockquote class="serif">Restaurante self-service, fogão a lenha, próximo à Cachoeira do Salto. Cerveja gelada.</blockquote>
+            <div class="quote-author">Cliente · avaliação no Google</div>
+            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+          </a>
+        </article>
+        <article class="quote card-lift">
+          <a class="quote-inner" data-review-index="4" href="https://www.google.com/maps/place/?q=place_id:ChIJR6-Qm2OrzpQRdvUmJ9u0VYQ" target="_blank" rel="noopener noreferrer" aria-label="Ver avaliação no Google">
+            <div class="qmark serif" aria-hidden="true">“</div>
+            <blockquote class="serif">Comida muito boa, ambiente agradável, atendimento excelente. Amamos tudo e voltaremos sempre!</blockquote>
+            <div class="quote-author">Cliente · avaliação no Google</div>
+            <span class="quote-cta" aria-hidden="true">Ver no Google →</span>
+          </a>
+        </article>
+      </div>
+      <div class="reviews-controls">
+        <button type="button" class="carousel-btn" data-review-scroll="-1" aria-label="Avaliação anterior">←</button>
+        <button type="button" class="carousel-btn" data-review-scroll="1" aria-label="Próxima avaliação">→</button>
+      </div>
     </div>
   </div>
 </section>

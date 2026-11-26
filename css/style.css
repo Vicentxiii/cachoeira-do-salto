@@ -184,6 +184,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .emporio { margin-top: 36px; padding: 28px 32px; border: 1px dashed rgba(244,235,221,.35); border-radius: 20px; }
 .emporio-title { font-size: 22px; font-weight: 500; }
 .emporio p { margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #cbbfae; }
+.emporio-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 0; padding: 0; }
+.emporio-list li { padding: 9px 16px; border: 1px solid rgba(244,235,221,.2); border-radius: 999px; background: rgba(244,235,221,.05); font-size: 14px; color: #e3d6c4; }
 
 /* Avaliações */
 .reviews { display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start; }
@@ -191,11 +193,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .rating-n { margin-top: 18px; font-size: 110px; line-height: .95; font-weight: 500; }
 .stars { margin-top: 8px; font-size: 22px; letter-spacing: .15em; color: var(--rust); }
 .rating-sub { margin: 12px 0 0; font-size: 15px; color: #5b5044; }
-.quotes { flex: 3 1 560px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-.quote { margin: 0; background: var(--paper); border: 1px solid rgba(20,17,13,.12); border-radius: 24px; padding: 30px 28px; }
+.quotes-wrap { flex: 3 1 560px; min-width: 0; }
+.quotes { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding: 4px 4px 18px; }
+.quotes:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-radius: 12px; }
+.quote { flex: 0 0 min(320px, 82vw); scroll-snap-align: start; margin: 0; background: var(--paper); border: 1px solid rgba(20,17,13,.12); border-radius: 24px; padding: 30px 28px; display: flex; }
+.quote-inner { display: flex; flex-direction: column; flex: 1; color: inherit; text-decoration: none; }
+.quote-inner:focus-visible { outline: 2px solid var(--rust); outline-offset: 6px; border-radius: 8px; }
 .qmark { font-size: 54px; line-height: .6; color: var(--rust); }
 .quote blockquote { margin: 8px 0 0; font-size: 21px; line-height: 1.38; font-weight: 400; }
-.quote figcaption { margin-top: 20px; font-size: 14px; color: #5b5044; }
+.quote-author { margin-top: 20px; font-size: 14px; color: #5b5044; }
+.quote-cta { margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--rust); }
+.reviews-controls { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+.carousel-btn { width: 42px; height: 42px; border-radius: 999px; border: 1px solid rgba(20,17,13,.18); background: transparent; color: var(--ink); font: inherit; font-size: 20px; line-height: 1; cursor: pointer; transition: background .2s, color .2s; }
+.carousel-btn:hover { background: var(--ink); color: var(--cream); }
+.carousel-btn:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
 
 /* Como chegar */
 .chegar { display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch; }
