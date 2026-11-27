@@ -134,6 +134,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .step { width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; font-size: 22px; font-family: inherit; color: var(--ink); cursor: pointer; }
 .step:hover { background: var(--ink); color: var(--cream); }
 .people { min-width: 70px; text-align: center; font-size: 52px; font-weight: 500; }
+.stepper-criancas .step { width: 42px; height: 42px; font-size: 20px; }
+.stepper-criancas .people { min-width: 54px; font-size: 38px; }
 .segs { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
 .seg { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink); font-family: inherit; font-weight: 500; font-size: 14px; cursor: pointer; }
 .seg.is-on { background: var(--ink); color: var(--cream); }

@@ -10,6 +10,7 @@
   var WHATSAPP_NUMBER = '5511979860261';
 
   // Horários de funcionamento (confirmados): aberto todos os dias.
+  // Seg–sex até 15h; fins de semana e feriados até 17h.
   // Formato: { abre: 'HH:MM', fecha: 'HH:MM' }. Use null para um dia sem horário confirmado.
   // Para um dia que nunca abre, use { fechado: true }.
   var HORARIOS = {
@@ -22,6 +23,12 @@
     dom: { abre: '11:00', fecha: '17:00' }
   };
 
+  // FERIADOS: feriados nacionais abrem das 11h às 17h (data fixa em MM-DD).
+  // O selo "Aberto agora" considera também Carnaval, Sexta-feira Santa e Corpus Christi,
+  // calculados a partir da Páscoa. Se houver feriado local, inclua a data em FERIADOS_FIXOS.
+  var FERIADOS_FIXOS = ['01-01', '04-21', '05-01', '09-07', '10-12', '11-02', '11-15', '12-25'];
+  var HORARIO_FERIADO = { abre: '11:00', fecha: '17:00' };
+
   // PRATO DO DIA — como o Leo atualiza:
   // 1) Edite este array PRATOS_DO_DIA, logo aqui no topo de js/main.js.
   // 2) Cada item segue o formato:
@@ -31,12 +38,14 @@
   // Enquanto o array estiver vazio, o bloco "Hoje no fogão" fica invisível.
   var PRATOS_DO_DIA = [];
 
-  // Preço do self-service (comida à vontade) por pessoa. A calculadora troca
-  // o valor quando a pessoa seleciona "Dia de semana" ou "Fim de semana".
+  // Preço do self-service (comida à vontade) por pessoa. Crianças de 5 a 12 anos
+  // pagam metade do valor em qualquer dia (calculado automaticamente).
   var PRECOS = {
     semana: 40,
-    fds: 50
+    fds: 50,
+    feriado: 50
   };
+  var IDADE_CRIANCA = '5 a 12 anos';
 
   // Links diretos das avaliações no Google, na mesma ordem dos cards.
   // Copie o link de cada avaliação no Google Maps e cole aqui.
@@ -68,25 +77,30 @@
   criarBrasas('embers', 26);
   criarBrasas('embers-footer', 16);
 
-  // Calculadora de grupo (mantida)
-  var pessoas = 4, dia = 'semana';
+  // Calculadora de grupo: adultos + crianças de 5 a 12 anos (meio preço)
+  var pessoas = 4, criancas = 0, dia = 'semana';
   var elPessoas = document.getElementById('pessoas');
+  var elCriancas = document.getElementById('criancas');
   var elTotal = document.getElementById('total');
   var elDica = document.getElementById('dica');
   var elPrecoNota = document.getElementById('preco-nota');
   var fmt = function (n) { return 'R$ ' + n.toLocaleString('pt-BR'); };
   var dicas = {
     semana: 'Dia de semana: as avaliações não apontam fila. Almoço das 11h às 15h.',
-    fds: 'As avaliações citam fila nos fins de semana por causa de excursões. Chegue cedo: o almoço vai das 11h às 17h.'
+    fds: 'As avaliações citam fila nos fins de semana por causa de excursões. Chegue cedo: o almoço vai das 11h às 17h.',
+    feriado: 'Feriado: o almoço vai das 11h às 17h. Costuma ter mais movimento, então chegue cedo.'
   };
 
   function render() {
     var preco = PRECOS[dia];
+    var precoCrianca = preco / 2;
     elPessoas.textContent = pessoas;
-    elTotal.textContent = fmt(pessoas * preco);
+    if (elCriancas) elCriancas.textContent = criancas;
+    elTotal.textContent = fmt(pessoas * preco + criancas * precoCrianca);
     elDica.textContent = dicas[dia];
     if (elPrecoNota) {
-      elPrecoNota.textContent = 'Self-service a ' + fmt(preco) + ' por pessoa, à vontade. Pode repetir quantos pratos quiser.';
+      elPrecoNota.textContent = 'Self-service a ' + fmt(preco) + ' por adulto e ' + fmt(precoCrianca) +
+        ' por criança de ' + IDADE_CRIANCA + ' (meio preço), à vontade. Pode repetir quantos pratos quiser.';
     }
     document.querySelectorAll('.seg').forEach(function (b) {
       var on = b.getAttribute('data-dia') === dia;
@@ -101,11 +115,16 @@
       render();
     }
 
+    function mudarCriancas(delta) {
+      criancas = Math.min(40, Math.max(0, criancas + delta));
+      render();
+    }
+
     // Um toque conta na hora; se a pessoa segurar, acelera sozinho.
-    function configurarStepper(botao, delta) {
+    function configurarStepper(botao, delta, acao) {
       if (!botao) return;
       if (!window.PointerEvent) {
-        botao.addEventListener('click', function () { mudarPessoas(delta); });
+        botao.addEventListener('click', function () { acao(delta); });
         return;
       }
       var espera = null, repeticao = null;
@@ -116,9 +135,9 @@
       botao.addEventListener('pointerdown', function (event) {
         if (event.pointerType === 'mouse' && event.button !== 0) return;
         event.preventDefault(); // evita o duplo toque dar zoom e a seleção de texto
-        mudarPessoas(delta);
+        acao(delta);
         espera = setTimeout(function () {
-          repeticao = setInterval(function () { mudarPessoas(delta); }, 110);
+          repeticao = setInterval(function () { acao(delta); }, 110);
         }, 350);
       });
       ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(function (nome) {
@@ -126,12 +145,14 @@
       });
       // Enter/Espaço no teclado também contam como um toque.
       botao.addEventListener('click', function (event) {
-        if (event.detail === 0) mudarPessoas(delta);
+        if (event.detail === 0) acao(delta);
       });
     }
 
-    configurarStepper(document.getElementById('mais'), 1);
-    configurarStepper(document.getElementById('menos'), -1);
+    configurarStepper(document.getElementById('mais'), 1, mudarPessoas);
+    configurarStepper(document.getElementById('menos'), -1, mudarPessoas);
+    configurarStepper(document.getElementById('mais-criancas'), 1, mudarCriancas);
+    configurarStepper(document.getElementById('menos-criancas'), -1, mudarCriancas);
     document.querySelectorAll('.seg').forEach(function (b) {
       b.addEventListener('click', function () { dia = b.getAttribute('data-dia'); render(); });
     });
@@ -140,10 +161,13 @@
 
   // As demais citações de preço na página usam a mesma constante PRECOS.
   document.querySelectorAll('[data-preco-resumo]').forEach(function (el) {
-    el.textContent = fmt(PRECOS.semana) + ' na semana · ' + fmt(PRECOS.fds) + ' no fim de semana';
+    el.textContent = fmt(PRECOS.semana) + ' na semana · ' + fmt(PRECOS.fds) +
+      ' no fim de semana ou feriado';
   });
   document.querySelectorAll('[data-preco-detalhe]').forEach(function (el) {
-    el.textContent = fmt(PRECOS.semana) + ' por pessoa em dia de semana e ' + fmt(PRECOS.fds) + ' aos fins de semana, à vontade. Pode repetir quantos pratos quiser.';
+    el.textContent = fmt(PRECOS.semana) + ' por adulto em dia de semana e ' + fmt(PRECOS.fds) +
+      ' aos fins de semana e feriados, à vontade. Crianças de ' + IDADE_CRIANCA +
+      ' pagam metade. Pode repetir quantos pratos quiser.';
   });
 
   /* ---------- Avaliações: links diretos e carrossel ---------- */
@@ -219,12 +243,51 @@
   var fmtHora = new Intl.DateTimeFormat('pt-BR', {
     timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
   });
+  var fmtData = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit'
+  });
+
+  function isoDeData(d) {
+    return d.getUTCFullYear() + '-' +
+      String(d.getUTCMonth() + 1).padStart(2, '0') + '-' +
+      String(d.getUTCDate()).padStart(2, '0');
+  }
+
+  // Páscoa pelo algoritmo de Meeus/Jones/Butcher, para os feriados móveis.
+  function pascoa(ano) {
+    var a = ano % 19, b = Math.floor(ano / 100), c = ano % 100;
+    var d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25);
+    var g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30;
+    var i = Math.floor(c / 4), k = c % 4;
+    var l = (32 + 2 * e + 2 * i - h - k) % 7;
+    var m = Math.floor((a + 11 * h + 22 * l) / 451);
+    var mes = Math.floor((h + l - 7 * m + 114) / 31);
+    var dia = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(Date.UTC(ano, mes - 1, dia));
+  }
+
+  function ehFeriado(iso) {
+    if (FERIADOS_FIXOS.indexOf(iso.slice(5)) !== -1) return true;
+    var pas = pascoa(parseInt(iso.slice(0, 4), 10));
+    // Carnaval (segunda e terça), Sexta-feira Santa e Corpus Christi.
+    return [-48, -47, -2, 60].some(function (delta) {
+      var d = new Date(pas.getTime());
+      d.setUTCDate(d.getUTCDate() + delta);
+      return isoDeData(d) === iso;
+    });
+  }
 
   function agoraEmSP() {
     var agora = new Date();
+    var partes = fmtData.formatToParts(agora);
+    var p = {};
+    partes.forEach(function (x) { p[x.type] = x.value; });
+    var data = p.year + '-' + p.month + '-' + p.day;
     return {
       dia: SEMANA[fmtDia.format(agora)],
-      hora: fmtHora.format(agora)
+      hora: fmtHora.format(agora),
+      data: data,
+      feriado: ehFeriado(data)
     };
   }
 
@@ -242,7 +305,7 @@
 
   function atualizarBadges() {
     var agora = agoraEmSP();
-    var h = HORARIOS[agora.dia];
+    var h = agora.feriado ? HORARIO_FERIADO : HORARIOS[agora.dia];
     var texto, estado;
 
     if (h && h.fechado) {
@@ -252,7 +315,7 @@
       texto = 'Confirme o horário pelo WhatsApp';
       estado = 'is-unknown';
     } else if (agora.hora >= h.abre && agora.hora < h.fecha) {
-      texto = 'Aberto agora · fecha às ' + h.fecha;
+      texto = (agora.feriado ? 'Feriado · ' : '') + 'Aberto agora · fecha às ' + h.fecha;
       estado = 'is-open';
     } else {
       var abertura = proximaAbertura(agora.dia);

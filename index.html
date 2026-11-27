@@ -22,7 +22,7 @@
   "@type": "Restaurant",
   "name": "Restaurante e Empório Cachoeira do Salto",
   "servesCuisine": "Mineira",
-  "priceRange": "R$ 40 a R$ 50 por pessoa",
+  "priceRange": "R$ 20 a R$ 50 por pessoa",
   "openingHours": ["Mo-Fr 11:00-15:00", "Sa-Su 11:00-17:00"],
   "address": {
     "@type": "PostalAddress",
@@ -100,8 +100,8 @@
     </div>
     <div class="hero-facts">
       <span><strong>★ 4,7</strong> · 51 avaliações no Google</span>
-      <span>Self-service <span data-preco-resumo>R$ 40 na semana · R$ 50 no fim de semana</span>, à vontade</span>
-      <span>Aberto todos os dias · Seg–sex: 11h–15h · Sáb–dom: 11h–17h</span>
+      <span>Self-service <span data-preco-resumo>R$ 40 na semana · R$ 50 no fim de semana ou feriado</span>, à vontade</span>
+      <span>Aberto todos os dias · Seg–sex: 11h–15h · Sáb, dom e feriados: 11h–17h</span>
     </div>
   </div>
 </header>
@@ -117,26 +117,34 @@
     <div class="plan-grid">
       <div class="calc">
         <div class="serif calc-title">Estimativa para o seu grupo <span class="calc-star" aria-hidden="true">*</span></div>
-        <p class="calc-alert">Atenção: aos finais de semana o preço muda. Certifique-se de clicar no botão <strong>Fim de semana</strong> para ver o preço atualizado.</p>
+        <p class="calc-alert">Atenção: fins de semana e feriados têm outro preço. Clique em <strong>Fim de semana</strong> ou <strong>Feriado</strong> para ver o valor atualizado. Crianças de 5 a 12 anos pagam metade.</p>
 
-        <div class="calc-label">Quantas pessoas?</div>
+        <div class="calc-label">Quantos adultos?</div>
         <div class="stepper">
-          <button class="step" type="button" id="menos" aria-label="Menos uma pessoa">−</button>
+          <button class="step" type="button" id="menos" aria-label="Menos um adulto">−</button>
           <output class="serif people" id="pessoas" aria-live="polite">4</output>
-          <button class="step" type="button" id="mais" aria-label="Mais uma pessoa">+</button>
+          <button class="step" type="button" id="mais" aria-label="Mais um adulto">+</button>
+        </div>
+
+        <div class="calc-label">Quantas crianças de 5 a 12 anos?</div>
+        <div class="stepper stepper-criancas">
+          <button class="step" type="button" id="menos-criancas" aria-label="Menos uma criança">−</button>
+          <output class="serif people" id="criancas" aria-live="polite">0</output>
+          <button class="step" type="button" id="mais-criancas" aria-label="Mais uma criança">+</button>
         </div>
 
         <div class="calc-label">Quando você vai?</div>
         <div class="segs" role="group" aria-label="Quando você vai">
           <button class="seg is-on" type="button" data-dia="semana" aria-pressed="true">Dia de semana</button>
           <button class="seg" type="button" data-dia="fds" aria-pressed="false">Fim de semana</button>
+          <button class="seg" type="button" data-dia="feriado" aria-pressed="false">Feriado</button>
         </div>
 
         <div class="calc-result">
           <div class="calc-label">Estimativa de consumo</div>
           <div class="serif total" id="total">R$ 160</div>
           <p class="calc-tip" id="dica">Dia de semana: as avaliações não apontam fila. Almoço das 11h às 15h.</p>
-          <p class="calc-note" id="preco-nota">Self-service a R$ 40 por pessoa, à vontade. Pode repetir quantos pratos quiser.</p>
+          <p class="calc-note" id="preco-nota">Self-service a R$ 40 por adulto e R$ 20 por criança de 5 a 12 anos (meio preço), à vontade. Pode repetir quantos pratos quiser.</p>
         </div>
       </div>
 
@@ -151,7 +159,7 @@
         </div>
         <div class="tip card-lift">
           <div class="serif tip-title">Horários</div>
-          <p>Aberto todos os dias. De segunda a sexta, o almoço é servido das 11h às 15h. Aos sábados e domingos, das 11h às 17h.</p>
+          <p>Aberto todos os dias. De segunda a sexta, o almoço é servido das 11h às 15h. Aos sábados, domingos e feriados, das 11h às 17h.</p>
         </div>
       </div>
     </div>
@@ -177,11 +185,11 @@
         </li>
         <li class="practical-item">
           <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5v7"/><path d="M8 12h8"/><path d="M9 20l3-4.5 3 4.5"/></svg>
-          <div><strong>Crianças</strong><span>Sim, há opções de cadeira alta para crianças.</span></div>
+          <div><strong>Crianças</strong><span>Sim, há cadeira alta. Crianças de 5 a 12 anos pagam metade do preço do self-service.</span></div>
         </li>
         <li class="practical-item practical-wide">
           <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9-9-9z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
-          <div><strong>Cobrança do self-service</strong><span data-preco-detalhe>R$ 40 por pessoa em dia de semana e R$ 50 aos fins de semana, à vontade. Pode repetir quantos pratos quiser.</span></div>
+          <div><strong>Cobrança do self-service</strong><span data-preco-detalhe>R$ 40 por adulto em dia de semana e R$ 50 aos fins de semana e feriados, à vontade. Crianças de 5 a 12 anos pagam metade. Pode repetir quantos pratos quiser.</span></div>
         </li>
       </ul>
     </div>
@@ -394,7 +402,7 @@
         </div>
         <div>
           <dt>Horário</dt>
-          <dd>Todos os dias · Seg–sex: 11h–15h · Sáb–dom: 11h–17h</dd>
+          <dd>Todos os dias · Seg–sex: 11h–15h · Sáb, dom e feriados: 11h–17h</dd>
         </div>
       </dl>
 
@@ -440,7 +448,7 @@
       </details>
       <details class="faq-item">
         <summary>Quanto custa e até que hora servem o almoço?</summary>
-        <p>O self-service é à vontade: R$ 40 por pessoa de segunda a sexta e R$ 50 aos sábados e domingos. O almoço é servido das 11h às 15h em dias de semana e das 11h às 17h nos fins de semana.</p>
+        <p>O self-service é à vontade: R$ 40 por adulto de segunda a sexta e R$ 50 aos sábados, domingos e feriados. Crianças de 5 a 12 anos pagam metade. O almoço é servido das 11h às 15h em dias de semana e das 11h às 17h nos fins de semana e feriados.</p>
       </details>
       <details class="faq-item">
         <summary>O estacionamento é gratuito?</summary>
